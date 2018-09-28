@@ -1,0 +1,49 @@
+<!--DOCTYPE html-->
+
+{% extends "layout.html" %}
+
+{% block main %}
+<!-- app's own JavaScript -->
+<script src="/static/pvp.js"></script>
+
+<!-- https://www.tablesgenerator.com/html_tables https://stackoverflow.com/questions/10671174/changing-button-text-onclick https://stackoverflow.com/questions/1257430/css-border-only-inside-the-table -->
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:10px;overflow:hidden;word-break:normal; }
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<h1>Two Player</h1>
+
+<div class="center">
+<table class="tg" frame="void" rules="all">
+{% set first = [0] %}
+{% set second = [0] %}
+{% for i in range(3) %}
+<tr>
+    {% for j in range(3) %}
+    <th>
+        <table style="width:100%" frame="void" rules="all">
+        {% set second = [0] %}
+        {% for k in range(3) %}
+            <tr>
+            {% for l in range(3) %}
+                    <td class="tg-yw4l"><input onclick="clicked(this.id)" type="button" value="  " id="{{first}}{{second}}" style="background:transparent; border:none;"></td>
+            {% if second.append(second.pop() + 1) %}{% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% if first.append(first.pop() + 1) %}{% endif %}
+    {% endfor %}
+    </th>
+{% endfor %}
+
+</tr>
+</table>
+<div class="center">
+    <h3><input disabled="true" id="notification" style="text-align:center" value="X goes first"/></h3>
+</div>
+{% endblock %}
+</div>
